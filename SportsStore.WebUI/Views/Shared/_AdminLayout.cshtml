@@ -2,12 +2,90 @@
 
 <html>
 <head>
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css" />
+	<title>@ViewBag.Title</title>
+
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+
+	<link href="@Url.Content("~/Content/Admin.css")" rel="stylesheet" type="text/css" />
+
+	<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+
+	@if (false)
+	{
+		<script src="@Url.Content("~/Scripts/jquery-1.7-vsdoc.js")"></script>
+	}
+
+	<script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(".close").click(function () {
+				$("#Message").animate({ top: "+=10px" }).animate({ top: "-=1000px" });
+			});
+
+
+			$("#Message").fadeOut(400).fadeIn(400).fadeOut(400).fadeIn(400, function () { window.setTimeout(FadeOutMessage, 4000) });
+		});
+
+		function FadeOutMessage() {
+			$("#Message").fadeOut(2000);
+		}
+	</script>
+
+
+	<script>
+		$(function () {
+			$(".MenuIcons button:first").button({
+				icons: {
+					primary: "ui-icon-locked"
+				}
+			}).next().button({
+				icons: {
+					primary: "ui-icon-locked"
+				}
+			}).next().button({
+				icons: {
+					primary: "ui-icon-gear",
+					secondary: "ui-icon-triangle-1-s"
+				}
+			}).next().button({
+				icons: {
+					primary: "ui-icon-gear",
+					secondary: "ui-icon-triangle-1-s"
+				},
+				text: false
+			});
+		});
+	</script>
+
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+	<div>
+		<div id="MenuBar">
+			<div class="MenuIcons">
+				<button>Home</button>
+				<button>Questionnaire</button>
+				<button>Client</button>            
+				<button>Assessor</button>
+				<button>Visits</button>
+			</div>
+			<div id="MessageHolder">
+				 @if (TempData["message"] != null)
+				{ 
+					<div id="Message" class="Message">@TempData["message"] <a href="#" class="close">ClOsE!</a></div>
+				}
+			</div>
+		</div>
+
+
+
+
+
+
+		@RenderBody()
+	</div>
 </body>
 </html>

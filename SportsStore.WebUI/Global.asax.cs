@@ -26,10 +26,10 @@ namespace SportsStore.WebUI
                 "", // Only matches the empty URL (i.e. /)
                 new
                 {
-                    controller = "Product",
-                    action = "List",
+                    controller = "Admin",
+                    action = "Index"/*,
                     category = (string)null,
-                    page = 1
+                    page = 1*/
                 }
             );
 
